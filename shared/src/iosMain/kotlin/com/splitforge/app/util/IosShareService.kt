@@ -5,6 +5,7 @@ package com.splitforge.app.util
 import kotlinx.cinterop.addressOf
 import kotlinx.cinterop.usePinned
 import platform.Foundation.NSData
+import platform.Foundation.NSMutableData
 import platform.UIKit.UIActivityViewController
 import platform.UIKit.UIApplication
 import platform.UIKit.UIImage
@@ -36,7 +37,9 @@ private fun topViewController(): UIViewController? {
 
 private fun ByteArray.toNSData(): NSData {
     if (isEmpty()) return NSData()
-    return usePinned { pinned ->
-        NSData.create(bytes = pinned.addressOf(0), length = size.toULong())
-    } ?: NSData()
+    val mutableData = NSMutableData()
+    usePinned { pinned ->
+        mutableData.appendBytes(pinned.addressOf(0), size.toULong())
+    }
+    return mutableData
 }
