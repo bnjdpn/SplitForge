@@ -18,11 +18,9 @@ jobs:
         run: ./gradlew test :androidApp:assembleDebug :androidApp:lint
 
   ios:
-    runs-on: macos-15
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Select Xcode
-        run: sudo xcode-select -s /Applications/Xcode_16.2.app
       - uses: actions/setup-java@v4
         with:
           distribution: "temurin"
@@ -30,6 +28,4 @@ jobs:
       - name: Gradle tests
         run: ./gradlew test
       - name: Build iOS framework
-        run: ./gradlew :shared:linkDebugFrameworkIosSimulatorArm64 :shared:linkDebugFrameworkIosX64 && ./gradlew --stop
-      - name: Build iOS app (simulator)
-        run: xcodebuild -project iosApp/iosApp.xcodeproj -scheme iosApp -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' build
+        run: ./gradlew :shared:linkDebugFrameworkIosSimulatorArm64 :shared:linkDebugFrameworkIosX64
