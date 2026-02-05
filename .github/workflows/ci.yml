@@ -27,5 +27,7 @@ jobs:
           java-version: "17"
       - name: Gradle tests
         run: ./gradlew test
+      - name: Build iOS framework
+        run: ./gradlew :shared:linkDebugFrameworkIosSimulatorArm64 :shared:linkDebugFrameworkIosX64 && ./gradlew --stop
       - name: Build iOS app (simulator)
         run: xcodebuild -project iosApp/iosApp.xcodeproj -scheme iosApp -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' build
