@@ -4,7 +4,7 @@ set DIR=%~dp0
 set PROPS=%DIR%gradle\wrapper\gradle-wrapper.properties
 
 for /f "tokens=2 delims==" %%a in ('findstr /r "^distributionUrl" "%PROPS%"') do set DIST_URL=%%a
-set DIST_URL=%DIST_URL:\:=%
+set DIST_URL=%DIST_URL:\=%
 
 if "%DIST_URL%"=="" (
   echo distributionUrl not found

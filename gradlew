@@ -9,7 +9,7 @@ if [ ! -f "$PROPS" ]; then
   exit 1
 fi
 
-DIST_URL=$(grep -E '^distributionUrl=' "$PROPS" | cut -d'=' -f2- | sed 's#\\:##g')
+DIST_URL=$(grep -E '^distributionUrl=' "$PROPS" | cut -d'=' -f2- | sed 's#\\##g')
 if [ -z "$DIST_URL" ]; then
   echo "distributionUrl not found" >&2
   exit 1
