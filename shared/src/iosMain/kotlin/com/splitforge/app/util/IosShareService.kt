@@ -3,9 +3,11 @@
 package com.splitforge.app.util
 
 import kotlinx.cinterop.addressOf
+import kotlinx.cinterop.allocArrayOf
+import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.usePinned
 import platform.Foundation.NSData
-import platform.Foundation.NSMutableData
+import platform.posix.memcpy
 import platform.UIKit.UIActivityViewController
 import platform.UIKit.UIApplication
 import platform.UIKit.UIImage
@@ -35,11 +37,7 @@ private fun topViewController(): UIViewController? {
     return topController
 }
 
-private fun ByteArray.toNSData(): NSData {
-    if (isEmpty()) return NSData()
-    val mutableData = NSMutableData()
-    usePinned { pinned ->
-        mutableData.appendBytes(pinned.addressOf(0), size.toULong())
-    }
-    return mutableData
+private fun ByteArray.toNSData(): NSData = memScoped {
+    if (this@toNSData.isEmpty()) return@memScoped NSData()
+    NSData(bytes = allocArrayOf(this@toNSData), length = this@toNSData.size.toULong())
 }
