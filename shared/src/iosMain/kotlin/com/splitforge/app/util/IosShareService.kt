@@ -1,3 +1,5 @@
+@file:OptIn(kotlinx.cinterop.ExperimentalForeignApi::class)
+
 package com.splitforge.app.util
 
 import kotlinx.cinterop.addressOf
@@ -27,10 +29,7 @@ class IosShareService : ShareService {
 }
 
 private fun topViewController(): UIViewController? {
-    val keyWindow = UIApplication.sharedApplication.connectedScenes
-        .mapNotNull { it as? platform.UIKit.UIWindowScene }
-        .flatMap { it.windows }
-        .firstOrNull { it.isKeyWindow }
+    val keyWindow = UIApplication.sharedApplication.keyWindow
     var topController = keyWindow?.rootViewController
     while (topController?.presentedViewController != null) {
         topController = topController.presentedViewController
@@ -39,7 +38,7 @@ private fun topViewController(): UIViewController? {
 }
 
 private fun ByteArray.toNSData(): NSData {
-    val data = NSMutableData.create(length = size.toULong()) ?: return NSData()
+    val data = NSMutableData(length = size.toULong()) ?: return NSData()
     usePinned { pinned ->
         memcpy(data.mutableBytes, pinned.addressOf(0), size.convert())
     }

@@ -22,6 +22,7 @@ object PaceParser {
         val totalSeconds = (paceMinPerKm * 60.0).roundToInt()
         val minutes = totalSeconds / 60
         val seconds = totalSeconds % 60
-        return "%d:%02d".format(minutes, seconds)
+        val secondsText = seconds.toString().padStart(2, '0')
+        return "$minutes:$secondsText"
     }
 }

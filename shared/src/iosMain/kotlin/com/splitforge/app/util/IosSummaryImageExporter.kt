@@ -1,3 +1,5 @@
+@file:OptIn(kotlinx.cinterop.ExperimentalForeignApi::class)
+
 package com.splitforge.app.util
 
 import com.splitforge.app.domain.Segment
@@ -14,7 +16,9 @@ import platform.UIKit.UIColor
 import platform.UIKit.UIFont
 import platform.UIKit.UIGraphicsImageRenderer
 import platform.UIKit.UIGraphicsImageRendererFormat
+import platform.UIKit.UIImagePNGRepresentation
 import platform.UIKit.UIRectFill
+import platform.UIKit.drawAtPoint
 import platform.posix.memcpy
 
 class IosSummaryImageExporter(private val strings: Strings) : SummaryImageExporter {
@@ -48,7 +52,7 @@ class IosSummaryImageExporter(private val strings: Strings) : SummaryImageExport
                 y += lineHeight
             }
         }
-        val data = image.pngData()
+        val data = UIImagePNGRepresentation(image)
         return data?.toByteArray() ?: ByteArray(0)
     }
 
