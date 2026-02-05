@@ -29,7 +29,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.getValue
@@ -37,7 +37,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.KeyboardOptions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.splitforge.app.domain.AppState
@@ -258,7 +258,7 @@ private fun SegmentEditorCard(
                         },
                         label = { Text(strings.distanceKm) },
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
-                        colors = TextFieldDefaults.outlinedTextFieldColors()
+                        colors = OutlinedTextFieldDefaults.colors()
                     )
                 }
                 is Segment.Station -> {
@@ -294,7 +294,7 @@ private fun SegmentEditorCard(
                         },
                         label = { Text(strings.baseTimeSeconds) },
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                        colors = TextFieldDefaults.outlinedTextFieldColors()
+                        colors = OutlinedTextFieldDefaults.colors()
                     )
                 }
             }

@@ -22,6 +22,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Schedule
+import androidx.compose.material.icons.filled.Settings
 import com.splitforge.app.AppDependencies
 import com.splitforge.app.domain.Template
 import com.splitforge.app.ui.screens.AthletesScreen
@@ -35,10 +40,10 @@ import com.splitforge.app.ui.theme.AppGradient
 import kotlinx.coroutines.launch
 
 private enum class AppTab(val icon: ImageVector) {
-    Templates(androidx.compose.material.icons.Icons.Default.ViewList),
-    Athletes(androidx.compose.material.icons.Icons.Default.People),
-    Planner(androidx.compose.material.icons.Icons.Default.Timeline),
-    Settings(androidx.compose.material.icons.Icons.Default.Settings)
+    Templates(Icons.Default.List),
+    Athletes(Icons.Default.Person),
+    Planner(Icons.Default.Schedule),
+    Settings(Icons.Default.Settings)
 }
 
 @Composable

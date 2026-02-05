@@ -16,10 +16,12 @@ if [ -z "$DIST_URL" ]; then
 fi
 
 ZIP_NAME=$(basename "$DIST_URL")
-DIST_DIR="$DIR/.gradle-wrapper"
-ZIP_PATH="$DIST_DIR/$ZIP_NAME"
+DIST_ROOT="$DIR/.gradle-wrapper"
+ZIP_PATH="$DIST_ROOT/$ZIP_NAME"
+GRADLE_VERSION=$(echo "$ZIP_NAME" | sed -E 's/gradle-([0-9.]+).*/\1/')
+INSTALL_DIR="$DIST_ROOT/gradle-$GRADLE_VERSION"
 
-mkdir -p "$DIST_DIR"
+mkdir -p "$DIST_ROOT"
 
 if [ ! -f "$ZIP_PATH" ]; then
   if command -v curl >/dev/null 2>&1; then
@@ -32,10 +34,8 @@ if [ ! -f "$ZIP_PATH" ]; then
   fi
 fi
 
-if [ ! -d "$DIST_DIR/gradle" ]; then
-  unzip -q "$ZIP_PATH" -d "$DIST_DIR"
-  EXTRACTED=$(find "$DIST_DIR" -maxdepth 1 -type d -name 'gradle-*' | head -n 1)
-  mv "$EXTRACTED" "$DIST_DIR/gradle"
+if [ ! -d "$INSTALL_DIR" ]; then
+  unzip -q "$ZIP_PATH" -d "$DIST_ROOT"
 fi
 
-exec "$DIST_DIR/gradle/bin/gradle" "$@"
+exec "$INSTALL_DIR/bin/gradle" "$@"

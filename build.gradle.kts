@@ -10,12 +10,13 @@ plugins {
 }
 
 subprojects {
-    apply(plugin = "org.jlleitschuh.gradle.ktlint")
-
-    ktlint {
-        version.set("1.1.1")
-        android.set(true)
-        outputToConsole.set(true)
-        coloredOutput.set(true)
+    pluginManager.apply("org.jlleitschuh.gradle.ktlint")
+    pluginManager.withPlugin("org.jlleitschuh.gradle.ktlint") {
+        extensions.configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
+            version.set("1.1.1")
+            android.set(true)
+            outputToConsole.set(true)
+            coloredOutput.set(true)
+        }
     }
 }

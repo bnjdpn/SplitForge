@@ -1,6 +1,6 @@
 package com.splitforge.app
 
-import com.russhwolf.settings.AppleSettings
+import com.russhwolf.settings.NSUserDefaultsSettings
 import com.splitforge.app.data.AppStateRepository
 import com.splitforge.app.data.DefaultDataFactory
 import com.splitforge.app.data.NoopBillingRepository
@@ -16,12 +16,12 @@ import com.splitforge.app.util.ShareService
 import kotlinx.serialization.json.Json
 import platform.Foundation.NSUserDefaults
 
-actual typealias PlatformContext = Any
+actual class PlatformContext
 
 actual class PlatformAppDependenciesFactory actual constructor(context: PlatformContext?) {
     actual fun create(): AppDependencies {
         val strings = StringsProvider.forLanguage(LanguageProvider().currentLanguage())
-        val settings = AppleSettings(NSUserDefaults.standardUserDefaults)
+        val settings = NSUserDefaultsSettings(NSUserDefaults.standardUserDefaults)
         val json = Json { ignoreUnknownKeys = true; encodeDefaults = true }
         val defaultState = DefaultDataFactory.create(strings)
         val appStateRepository = AppStateRepository(settings, json, defaultState)

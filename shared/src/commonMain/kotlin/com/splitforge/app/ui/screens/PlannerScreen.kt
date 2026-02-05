@@ -185,11 +185,13 @@ private fun SegmentPlanCard(
                     SingleChoiceSegmentedButtonRow {
                         SegmentedButton(
                             selected = plan.stationAssignments[index] == athleteA.id,
-                            onClick = { onAssignAthlete(index, athleteA.id) }
+                            onClick = { onAssignAthlete(index, athleteA.id) },
+                            shape = MaterialTheme.shapes.small
                         ) { Text(athleteA.name) }
                         SegmentedButton(
                             selected = plan.stationAssignments[index] == athleteB.id,
-                            onClick = { onAssignAthlete(index, athleteB.id) }
+                            onClick = { onAssignAthlete(index, athleteB.id) },
+                            shape = MaterialTheme.shapes.small
                         ) { Text(athleteB.name) }
                     }
                 } else {

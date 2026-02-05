@@ -10,7 +10,7 @@ import com.splitforge.app.PlatformAppDependenciesFactory
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val dependencies = PlatformAppDependenciesFactory(applicationContext).create()
+        val dependencies = PlatformAppDependenciesFactory(PlatformContext(applicationContext)).create()
         setContent {
             SplitForgeTheme {
                 SplitForgeApp(dependencies)

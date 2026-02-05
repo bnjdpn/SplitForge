@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlin.serialization)
@@ -8,9 +10,10 @@ plugins {
 
 kotlin {
     jvmToolchain(17)
-    androidTarget {
-        compilations.all {
-            kotlinOptions.jvmTarget = "17"
+    androidTarget()
+    targets.withType<org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget>().configureEach {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
         }
     }
 
@@ -46,6 +49,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
+                implementation(libs.androidx.core.ktx)
                 implementation(libs.androidx.lifecycle.runtime.compose)
             }
         }

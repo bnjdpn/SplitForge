@@ -7,7 +7,7 @@ SplitForge is a local-first split planner for hybrid race training. Build run + 
 - MVVM + StateFlow
 - Persistence: Multiplatform Settings (single AppState JSON)
 - Serialization: kotlinx.serialization
-- IAP: RevenueCat purchases-kmp (one-time Pro entitlement)
+- IAP: RevenueCat purchases-kmp-core (one-time Pro entitlement)
 
 ## Versions (stable + compatible)
 - Kotlin: 2.2.10
@@ -17,7 +17,7 @@ SplitForge is a local-first split planner for hybrid race training. Build run + 
 - Coroutines: 1.10.1
 - Serialization: 1.8.0
 - Multiplatform Settings: 1.3.0
-- RevenueCat purchases-kmp: 2.2.10+17.19.1
+- RevenueCat purchases-kmp-core: 2.2.3+17.11.0
 
 Reasoning: these versions are stable, widely compatible, and align with AGP 9 + Kotlin 2.2 + Compose MPP 1.10.
 

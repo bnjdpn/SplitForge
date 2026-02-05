@@ -1,10 +1,10 @@
 package com.splitforge.app.data
 
 import com.revenuecat.purchases.kmp.Purchases
-import com.revenuecat.purchases.kmp.awaitCustomerInfo
-import com.revenuecat.purchases.kmp.awaitOfferings
-import com.revenuecat.purchases.kmp.awaitPurchase
-import com.revenuecat.purchases.kmp.awaitRestore
+import com.revenuecat.purchases.kmp.ktx.awaitCustomerInfo
+import com.revenuecat.purchases.kmp.ktx.awaitOfferings
+import com.revenuecat.purchases.kmp.ktx.awaitPurchase
+import com.revenuecat.purchases.kmp.ktx.awaitRestore
 import com.revenuecat.purchases.kmp.models.CustomerInfo
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
