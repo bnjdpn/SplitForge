@@ -36,11 +36,11 @@ class IosSummaryImageExporter(private val strings: Strings) : SummaryImageExport
             UIColor.whiteColor.setFill()
             UIRectFill(CGRectMake(0.0, 0.0, width, height))
 
-            val titleAttributes = mapOf(
+            val titleAttributes: Map<Any?, Any> = mapOf(
                 platform.UIKit.NSFontAttributeName to UIFont.boldSystemFontOfSize(titleSize),
                 platform.UIKit.NSForegroundColorAttributeName to UIColor.blackColor
             )
-            val bodyAttributes = mapOf(
+            val bodyAttributes: Map<Any?, Any> = mapOf(
                 platform.UIKit.NSFontAttributeName to UIFont.systemFontOfSize(bodySize),
                 platform.UIKit.NSForegroundColorAttributeName to UIColor.darkGrayColor
             )

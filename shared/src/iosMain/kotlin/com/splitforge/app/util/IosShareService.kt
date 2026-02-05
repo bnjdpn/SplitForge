@@ -3,17 +3,14 @@
 package com.splitforge.app.util
 
 import kotlinx.cinterop.addressOf
-import kotlinx.cinterop.convert
 import kotlinx.cinterop.usePinned
 import platform.Foundation.NSData
-import platform.Foundation.NSMutableData
 import platform.UIKit.UIActivityViewController
 import platform.UIKit.UIApplication
 import platform.UIKit.UIImage
 import platform.UIKit.UIViewController
 import platform.darwin.dispatch_async
 import platform.darwin.dispatch_get_main_queue
-import platform.posix.memcpy
 
 class IosShareService : ShareService {
     override suspend fun shareImage(bytes: ByteArray, mimeType: String, fileName: String) {
@@ -38,9 +35,7 @@ private fun topViewController(): UIViewController? {
 }
 
 private fun ByteArray.toNSData(): NSData {
-    val data = NSMutableData(length = size.toULong()) ?: return NSData()
-    usePinned { pinned ->
-        memcpy(data.mutableBytes, pinned.addressOf(0), size.convert())
+    return usePinned { pinned ->
+        NSData.create(bytes = pinned.addressOf(0), length = size.toULong())
     }
-    return data
 }
