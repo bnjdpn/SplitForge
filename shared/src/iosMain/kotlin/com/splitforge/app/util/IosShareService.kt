@@ -36,6 +36,6 @@ private fun topViewController(): UIViewController? {
 
 private fun ByteArray.toNSData(): NSData {
     return usePinned { pinned ->
-        NSData.create(bytes = pinned.addressOf(0), length = size.toULong())
-    }
+        NSData.dataWithBytes(pinned.addressOf(0), size.toULong())
+    } ?: NSData()
 }
