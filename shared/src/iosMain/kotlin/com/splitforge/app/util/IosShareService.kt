@@ -1,13 +1,14 @@
-@file:OptIn(kotlinx.cinterop.ExperimentalForeignApi::class)
+@file:OptIn(
+    kotlinx.cinterop.ExperimentalForeignApi::class,
+    kotlinx.cinterop.BetaInteropApi::class
+)
 
 package com.splitforge.app.util
 
-import kotlinx.cinterop.addressOf
 import kotlinx.cinterop.allocArrayOf
+import kotlinx.cinterop.convert
 import kotlinx.cinterop.memScoped
-import kotlinx.cinterop.usePinned
 import platform.Foundation.NSData
-import platform.posix.memcpy
 import platform.UIKit.UIActivityViewController
 import platform.UIKit.UIApplication
 import platform.UIKit.UIImage
@@ -39,5 +40,5 @@ private fun topViewController(): UIViewController? {
 
 private fun ByteArray.toNSData(): NSData = memScoped {
     if (this@toNSData.isEmpty()) return@memScoped NSData()
-    NSData(bytes = allocArrayOf(this@toNSData), length = this@toNSData.size.toULong())
+    NSData.create(bytes = allocArrayOf(this@toNSData), length = this@toNSData.size.convert())
 }
