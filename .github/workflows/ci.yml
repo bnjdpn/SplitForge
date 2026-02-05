@@ -18,9 +18,11 @@ jobs:
         run: ./gradlew test :androidApp:assembleDebug :androidApp:lint
 
   ios:
-    runs-on: macos-latest
+    runs-on: macos-15
     steps:
       - uses: actions/checkout@v4
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_16.2.app
       - uses: actions/setup-java@v4
         with:
           distribution: "temurin"
