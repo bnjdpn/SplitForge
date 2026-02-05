@@ -49,7 +49,7 @@ From repo root:
 ## Run iOS (CLI)
 From repo root:
 ```sh
-xcodebuild -project iosApp/iosApp.xcodeproj -scheme iosApp -configuration Debug -destination 'platform=iOS Simulator,name=iPhone 15' build
+xcodebuild -project iosApp/iosApp.xcodeproj -scheme iosApp -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' build
 ```
 
 ## RevenueCat Configuration
