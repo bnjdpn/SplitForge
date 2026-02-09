@@ -1,0 +1,12 @@
+# Pas de popups d’approbation
+approval_policy = "never"
+
+# Codex peut écrire/exécuter uniquement dans le workspace (ton repo/worktree)
+sandbox_mode = "workspace-write"
+
+# Autorise les commandes à sortir sur Internet (gradle, npm, etc.)
+[sandbox_workspace_write]
+network_access = true
+
+# Optionnel: si tu veux du “vrai live” côté recherche web
+# web_search = "live"
